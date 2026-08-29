@@ -1,50 +1,386 @@
 {% extends 'layout.html' %}
 {% block titulo %} CanvaMarket — Materiales para artistas {% endblock %}
 {% block contenido %}
-<header class="site-header">
-  <div class="container header-top">
-    <a href="#" class="logo">CanvaMarket</a>
 
-    <form class="header-top__search" role="search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="search" placeholder="Buscar materiales..." aria-label="Buscar materiales">
-    </form>
-
-    <div class="header-actions">
-      <button class="icon-btn icon-btn--search" aria-label="Buscar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      </button>
-      <button class="icon-btn" aria-label="Ubicación">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-      </button>
-      <button class="icon-btn" aria-label="Mi cuenta">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-3.6 5-5.5 7.5-5.5s5.8 1.9 7.5 5.5"/></svg>
-      </button>
-      <button class="icon-btn icon-btn--cart" aria-label="Carrito de compras">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h2l1.5 10.5a2 2 0 0 0 2 1.7h7a2 2 0 0 0 2-1.6L20 8H7"/><circle cx="10" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg>
-        <span class="cart-badge">0</span>
-      </button>
-      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span class="hamburger__box">
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-          <span class="hamburger__line"></span>
-        </span>
-      </button>
+  <!-- HERO -->
+  <section class="hero" aria-label="Presentación">
+    <div class="hero__content">
+      <p class="hero__eyebrow">CanvaMarket / 01 — Arte independiente</p>
+      <h1 class="hero__title">
+        <span>DESCUBRE</span>
+        <span>EL ARTE QUE</span>
+        <span><em>TE REPRESENTA.</em></span>
+      </h1>
+      <p class="hero__desc">Encuentra piezas que cuentan una historia: pinturas, esculturas y obras originales creadas por artistas independientes de toda Latinoamérica.</p>
+      <div class="hero__actions">
+        <a href="#featured" class="btn btn--primary">Explorar obras</a>
+        <a href="#categories" class="btn btn--outline">Ver colección</a>
+      </div>
     </div>
-  </div>
+    <div class="hero__media">
+      <img
+        src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=1400&q=80"
+        alt="Obra de arte contemporánea exhibida en una galería con luz natural"
+        loading="eager">
+      <p class="hero__scroll">Scroll to explore ↓</p>
+    </div>
+  </section>
 
-  <nav class="header-nav" aria-label="Categorías principales">
-    <ul class="header-nav__list container">
-      <li><a class="header-nav__link" href="#categorias">Pinturas</a></li>
-      <li><a class="header-nav__link" href="#categorias">Dibujo</a></li>
-      <li><a class="header-nav__link" href="#categorias">Pinceles</a></li>
-      <li><a class="header-nav__link" href="#categorias">Papeles</a></li>
-      <li><a class="header-nav__link" href="#categorias">Canvas</a></li>
-      <li><a class="header-nav__link" href="#productos">Sets</a></li>
-      <li><a class="header-nav__link header-nav__link--sale" href="#productos">Ofertas</a></li>
-      <li><a class="header-nav__link" href="#comunidad">Inspiración</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- CATEGORIES -->
+  <section id="categories" class="section-pad" aria-labelledby="categories-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow eyebrow--index">Explora por categoría</p>
+          <h2 id="categories-title" class="section-title">Cada técnica, un universo distinto</h2>
+        </div>
+      </div>
+
+      <div class="category-grid" data-reveal-group>
+        <article class="category-card">
+          <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800&q=80" alt="Pinceles y óleo sobre lienzo" loading="lazy">
+          <div class="category-card__overlay"></div>
+          <h3 class="category-card__label">Pintura</h3>
+        </article>
+        <article class="category-card">
+          <img src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?auto=format&fit=crop&w=800&q=80" alt="Escultura de mármol en exhibición" loading="lazy">
+          <div class="category-card__overlay"></div>
+          <h3 class="category-card__label">Escultura</h3>
+        </article>
+        <article class="category-card">
+          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80" alt="Ilustración artística a color" loading="lazy">
+          <div class="category-card__overlay"></div>
+          <h3 class="category-card__label">Ilustración</h3>
+        </article>
+        <article class="category-card">
+          <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=800&q=80" alt="Cámara de fotografía artística" loading="lazy">
+          <div class="category-card__overlay"></div>
+          <h3 class="category-card__label">Fotografía</h3>
+        </article>
+        <article class="category-card">
+          <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?auto=format&fit=crop&w=800&q=80" alt="Composición de arte digital" loading="lazy">
+          <div class="category-card__overlay"></div>
+          <h3 class="category-card__label">Arte Digital</h3>
+        </article>
+        <article class="category-card">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0af771d71a?auto=format&fit=crop&w=800&q=80" alt="Alfarero trabajando en torno de cerámica" loading="lazy">
+          <div class="category-card__overlay"></div>
+          <h3 class="category-card__label">Cerámica</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section id="featured" class="section-pad" aria-labelledby="featured-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow eyebrow--index">CanvaMarket / 02</p>
+          <h2 id="featured-title" class="section-title">Obras destacadas</h2>
+          <p class="section-desc">Una selección de piezas únicas de artistas independientes.</p>
+        </div>
+      </div>
+
+      <div class="product-grid" data-reveal-group>
+
+        <article class="product-card">
+          <div class="product-card__frame">
+            <span class="badge badge--new">New</span>
+            <button class="product-card__fav" aria-label="Agregar a favoritos" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.5 1.2 4.5 2.7C11 6.2 12.5 5 14.5 5 18 5 19.5 8.5 18 11.9 15.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&w=700&q=80" alt="Fragments of Silence, pintura abstracta de Elena Morales" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Abstract Art</p>
+            <h3 class="product-card__title">Fragments of Silence</h3>
+            <p class="product-card__artist">by Elena Morales</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">$480 USD</span>
+              <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__frame">
+            <span class="badge badge--limited">Limited</span>
+            <button class="product-card__fav" aria-label="Agregar a favoritos" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.5 1.2 4.5 2.7C11 6.2 12.5 5 14.5 5 18 5 19.5 8.5 18 11.9 15.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?auto=format&fit=crop&w=700&q=80" alt="Terracotta Study, escultura de Diego Ramírez" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Sculpture</p>
+            <h3 class="product-card__title">Terracotta Study</h3>
+            <p class="product-card__artist">by Diego Ramírez</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">$620 USD</span>
+              <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__frame">
+            <span class="badge badge--original">Original</span>
+            <button class="product-card__fav" aria-label="Agregar a favoritos" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.5 1.2 4.5 2.7C11 6.2 12.5 5 14.5 5 18 5 19.5 8.5 18 11.9 15.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=700&q=80" alt="Chromatic Field, pintura de Ana Torres" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Painting</p>
+            <h3 class="product-card__title">Chromatic Field</h3>
+            <p class="product-card__artist">by Ana Torres</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">$395 USD</span>
+              <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__frame">
+            <span class="badge badge--trending">Trending</span>
+            <button class="product-card__fav" aria-label="Agregar a favoritos" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.5 1.2 4.5 2.7C11 6.2 12.5 5 14.5 5 18 5 19.5 8.5 18 11.9 15.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=700&q=80" alt="Vertigo Nocturno, arte digital de Renata Sol" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Digital Art</p>
+            <h3 class="product-card__title">Vertigo Nocturno</h3>
+            <p class="product-card__artist">by Renata Sol</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">$260 USD</span>
+              <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__frame">
+            <span class="badge badge--new">New</span>
+            <button class="product-card__fav" aria-label="Agregar a favoritos" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.5 1.2 4.5 2.7C11 6.2 12.5 5 14.5 5 18 5 19.5 8.5 18 11.9 15.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1554188248-986adbb73be4?auto=format&fit=crop&w=700&q=80" alt="Interior Museo, fotografía de Julián Pardo" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Photography</p>
+            <h3 class="product-card__title">Interior Museo</h3>
+            <p class="product-card__artist">by Julián Pardo</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">$310 USD</span>
+              <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__frame">
+            <span class="badge badge--original">Original</span>
+            <button class="product-card__fav" aria-label="Agregar a favoritos" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.5 1.2 4.5 2.7C11 6.2 12.5 5 14.5 5 18 5 19.5 8.5 18 11.9 15.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=700&q=80" alt="Espectro Cálido, pintura de Mariana Duque" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Abstract Art</p>
+            <h3 class="product-card__title">Espectro Cálido</h3>
+            <p class="product-card__artist">by Mariana Duque</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">$450 USD</span>
+              <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIST SPOTLIGHT -->
+  <section id="spotlight" class="section-pad" aria-labelledby="spotlight-title">
+    <div class="container">
+      <div class="spotlight" data-reveal>
+        <figure class="spotlight__media">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80" alt="Retrato de la artista María Fernández en su estudio" loading="lazy">
+        </figure>
+        <div class="spotlight__text">
+          <p class="eyebrow eyebrow--index">Artist Spotlight</p>
+          <h2 id="spotlight-title" class="spotlight__name">María Fernández</h2>
+          <p class="spotlight__quote">"Mi trabajo explora la relación entre naturaleza, memoria y espacios cotidianos."</p>
+          <a href="#" class="btn btn--outline">Ver perfil del artista</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL BANNER -->
+  <section class="editorial-banner" data-reveal id="about">
+    <div class="container">
+      <div class="editorial-banner__grid">
+        <div>
+          <p class="eyebrow" style="color: var(--color-sage-light);">CanvaMarket / 03</p>
+          <h2 class="editorial-banner__title">EL ARTE NO SOLO<br>SE OBSERVA.<br>SE VIVE.</h2>
+          <div class="editorial-banner__rule"></div>
+          <p style="max-width: 420px; color: rgba(255,255,255,0.7); margin-bottom: var(--space-md);">
+            Cada pieza en CanvaMarket lleva la huella de quien la creó. Explora colecciones curadas y encuentra la obra que transformará tu espacio.
+          </p>
+          <a href="#featured" class="btn btn--ghost-white">Descubrir colección</a>
+        </div>
+        <div class="editorial-banner__media">
+          <img src="https://images.unsplash.com/photo-1577720580479-7d839d829c73?auto=format&fit=crop&w=900&q=80" alt="Interior de una galería de arte contemporáneo" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS CAROUSEL -->
+  <section class="section-pad" aria-labelledby="new-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow eyebrow--index">CanvaMarket / 04</p>
+          <h2 id="new-title" class="section-title">Recién llegado</h2>
+          <p class="section-desc">Descubre las piezas más recientes de nuestra comunidad.</p>
+        </div>
+        <div class="carousel__controls">
+          <button class="carousel__btn" data-carousel-prev aria-label="Anterior"><i data-lucide="arrow-left"></i></button>
+          <button class="carousel__btn" data-carousel-next aria-label="Siguiente"><i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="carousel">
+        <div class="carousel__track" data-carousel-track>
+
+          <article class="carousel__item product-card">
+            <div class="product-card__frame">
+              <span class="badge badge--new">New</span>
+              <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=600&q=80" alt="Paleta y pinceles de artista" loading="lazy">
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__category">Painting</p>
+              <h3 class="product-card__title">Ocre y Silencio</h3>
+              <p class="product-card__artist">by Camila Vera</p>
+              <div class="product-card__footer">
+                <span class="product-card__price">$340 USD</span>
+                <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__item product-card">
+            <div class="product-card__frame">
+              <span class="badge badge--original">Original</span>
+              <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=600&q=80" alt="Piezas de cerámica artesanal" loading="lazy">
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__category">Ceramics</p>
+              <h3 class="product-card__title">Vasija Lunar</h3>
+              <p class="product-card__artist">by Tomás Salinas</p>
+              <div class="product-card__footer">
+                <span class="product-card__price">$180 USD</span>
+                <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__item product-card">
+            <div class="product-card__frame">
+              <span class="badge badge--limited">Limited</span>
+              <img src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=600&q=80" alt="Cerámica moderna en tonos neutros" loading="lazy">
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__category">Ceramics</p>
+              <h3 class="product-card__title">Forma Suspendida</h3>
+              <p class="product-card__artist">by Lucía Bravo</p>
+              <div class="product-card__footer">
+                <span class="product-card__price">$210 USD</span>
+                <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__item product-card">
+            <div class="product-card__frame">
+              <span class="badge badge--trending">Trending</span>
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Pinceles y materiales de pintura" loading="lazy">
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__category">Painting</p>
+              <h3 class="product-card__title">Trazo Interior</h3>
+              <p class="product-card__artist">by Iván Cortés</p>
+              <div class="product-card__footer">
+                <span class="product-card__price">$275 USD</span>
+                <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__item product-card">
+            <div class="product-card__frame">
+              <span class="badge badge--new">New</span>
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" alt="Artista pintando en su estudio" loading="lazy">
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__category">Painting</p>
+              <h3 class="product-card__title">Horizonte Íntimo</h3>
+              <p class="product-card__artist">by Paula Núñez</p>
+              <div class="product-card__footer">
+                <span class="product-card__price">$410 USD</span>
+                <button class="btn btn--dark" data-add-to-cart>Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR ARTISTS -->
+  <section class="artist-cta section-pad">
+    <div class="container">
+      <div class="artist-cta__grid" data-reveal>
+        <div>
+          <p class="eyebrow">¿Eres artista?</p>
+          <h2 class="section-title">Tu trabajo merece ser descubierto.</h2>
+          <p class="section-desc" style="max-width: 460px;">Únete a CanvaMarket y presenta tus obras frente a una nueva comunidad de coleccionistas.</p>
+          <div style="margin-top: var(--space-md);">
+            <a href="#" class="btn btn--dark">Vender mi arte</a>
+          </div>
+        </div>
+        <figure class="artist-cta__media">
+          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&w=800&q=80" alt="Estudio de un artista independiente con lienzos en proceso" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter section-pad">
+    <div class="container">
+      <div class="newsletter__grid">
+        <div>
+          <h2 class="newsletter__title">Inspiración directa a tu bandeja</h2>
+          <p class="section-desc">Recibe nuevas colecciones, artistas destacados y piezas únicas cada semana.</p>
+        </div>
+        <form class="newsletter__form" novalidate>
+          <div class="newsletter__form-row">
+            <label for="newsletter-email" class="visually-hidden" style="position:absolute; left:-9999px;">Correo electrónico</label>
+            <input type="email" id="newsletter-email" placeholder="Tu email" autocomplete="email" required>
+            <button type="submit" class="newsletter__submit" aria-label="Suscribirme">
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+          <p class="newsletter__message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
 {% endblock %}

@@ -325,6 +325,79 @@
   })();
 
   /* ===================================================
+     AUTH MODAL MODULE
+     (solo UI/animación: cambio de pestañas y visibilidad
+     de contraseña. No incluye lógica de autenticación real;
+     el envío de los formularios solo evita la recarga de página.)
+     =================================================== */
+  const AuthModal = (() => {
+    const modalEl = document.getElementById("authModal");
+    const tabsEl = document.getElementById("authTabs");
+
+    const setActiveTab = (target) => {
+      if (!tabsEl || !target) return;
+
+      tabsEl.setAttribute("data-active", target);
+
+      tabsEl.querySelectorAll("[data-auth-tab]").forEach((tab) => {
+        const isActive = tab.dataset.authTab === target;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+      });
+
+      modalEl.querySelectorAll("[data-auth-panel]").forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.authPanel === target);
+      });
+    };
+
+    const bindTabSwitching = () => {
+      modalEl.querySelectorAll("[data-auth-tab]").forEach((btn) => {
+        btn.addEventListener("click", () => setActiveTab(btn.dataset.authTab));
+      });
+    };
+
+    const bindPasswordToggles = () => {
+      modalEl.querySelectorAll("[data-toggle-password]").forEach((toggleBtn) => {
+        toggleBtn.addEventListener("click", () => {
+          const input = toggleBtn.closest(".form-field").querySelector("input");
+          const icon = toggleBtn.querySelector("i");
+          const isHidden = input.type === "password";
+
+          input.type = isHidden ? "text" : "password";
+          icon.classList.toggle("fa-eye", !isHidden);
+          icon.classList.toggle("fa-eye-slash", isHidden);
+          toggleBtn.setAttribute("aria-label", isHidden ? "Ocultar contraseña" : "Mostrar contraseña");
+        });
+      });
+    };
+
+    const bindOpenTargets = () => {
+      // Cualquier disparador con data-auth-target abre el modal
+      // ya en la pestaña correspondiente (Bootstrap gestiona el modal).
+      document.querySelectorAll("[data-auth-target]").forEach((trigger) => {
+        trigger.addEventListener("click", () => setActiveTab(trigger.dataset.authTarget));
+      });
+    };
+
+    const preventDemoSubmit = () => {
+      // Solo evita la recarga de página; no procesa ni valida datos.
+      modalEl.querySelectorAll(".auth-panel").forEach((form) => {
+        form.addEventListener("submit", (e) => e.preventDefault());
+      });
+    };
+
+    const init = () => {
+      if (!modalEl || !tabsEl) return;
+      bindTabSwitching();
+      bindPasswordToggles();
+      bindOpenTargets();
+      preventDemoSubmit();
+    };
+
+    return { init };
+  })();
+
+  /* ===================================================
      BOOTSTRAP
      =================================================== */
   document.addEventListener("DOMContentLoaded", () => {
@@ -333,5 +406,6 @@
     Animations.init();
     Cart.init();
     Newsletter.init();
+    AuthModal.init();
   });
 })();

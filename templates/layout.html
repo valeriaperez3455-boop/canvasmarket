@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> {% block titulo %} {% endblock %} </title>
+<title>{% block titulo %} {% endblock %}</title>
 <meta name="description" content="CanvaMarket, materiales seleccionados para pintores, ilustradores y creativos. Acuarelas, óleos, acrílicos, pinceles, papeles y canvas.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://images.unsplash.com">
 
-<link rel="stylesheet" href="{{ url_for('static',filename='css.bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='css/all.min.css') }}">
+
 </head>
 <body>
 
@@ -43,7 +44,18 @@
         <button class="icon-btn icon-btn--desktop-only" aria-label="Tiendas cercanas">
           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.5 18C9.5 18 16 12.4 16 7.5C16 3.9 13.1 1 9.5 1C5.9 1 3 3.9 3 7.5C3 12.4 9.5 18 9.5 18Z" stroke="currentColor" stroke-width="1.3"/><circle cx="9.5" cy="7.5" r="2.4" stroke="currentColor" stroke-width="1.3"/></svg>
         </button>
-        <button class="icon-btn" aria-label="Mi cuenta">
+
+        <div class="auth-actions">
+          <button type="button" class="auth-link" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-target="login">
+            <i class="fa-regular fa-user" aria-hidden="true"></i>
+            <span>Iniciar sesión</span>
+          </button>
+          <button type="button" class="btn btn--primary btn--sm" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-target="register">
+            Registrarse
+          </button>
+        </div>
+
+        <button class="icon-btn icon-btn--account-mobile" aria-label="Mi cuenta" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-target="login">
           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9.5" cy="5.8" r="3.3" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 17.5C2.5 13.6 5.6 11 9.5 11C13.4 11 16.5 13.6 16.5 17.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
         </button>
         <button class="icon-btn icon-btn--cart" id="cartBtn" aria-label="Carrito de compras, 0 productos">
@@ -63,20 +75,8 @@
     </div>
   </div>
 
-  <nav class="main-nav" aria-label="Navegación principal">
-    <div class="container main-nav__inner">
-      <ul class="main-nav__list">
-        <li><a href="#categorias" class="nav-link">Pinturas</a></li>
-        <li><a href="#formas" class="nav-link">Dibujo</a></li>
-        <li><a href="#productos" class="nav-link">Pinceles</a></li>
-        <li><a href="#formas" class="nav-link">Papeles</a></li>
-        <li><a href="#categorias" class="nav-link">Canvas</a></li>
-        <li><a href="#productos" class="nav-link">Sets</a></li>
-        <li><a href="#productos" class="nav-link nav-link--accent">Ofertas</a></li>
-        <li><a href="#comunidad" class="nav-link">Inspiración</a></li>
-      </ul>
-    </div>
-  </nav>
+  {% include 'componets/navbar.html' %}
+
 </header>
 
 <!-- ============ MOBILE NAV ============ -->
@@ -102,89 +102,129 @@
     <li><a href="#productos">Ofertas</a></li>
     <li><a href="#comunidad">Inspiración</a></li>
   </ul>
+  <div class="mobile-nav__auth">
+    <button type="button" class="btn btn--outline-dark" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-target="login">Iniciar sesión</button>
+    <button type="button" class="btn btn--primary" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-target="register">Registrarse</button>
+  </div>
   <div class="mobile-nav__footer">
-    <a href="#" class="icon-text-link">Mi cuenta</a>
     <a href="#" class="icon-text-link">Tiendas</a>
   </div>
 </div>
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
 <main id="main">
-  {% block contenido %}
-  {% endblock %}
+  {% block contenido %} {% endblock %}
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col footer-col--brand">
-        <a href="#top" class="logo">
-          <span class="logo__mark" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1C11 6 6 8 1 8C1 13 6 15 11 21C16 15 21 13 21 8C16 8 11 6 11 1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+{% include 'componets/footer.html' %}
+
+<!-- ============ AUTH MODAL (LOGIN / REGISTER) ============ -->
+<div class="modal fade auth-modal" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <button type="button" class="auth-modal__close" data-bs-dismiss="modal" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+
+      <div class="auth-modal__media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=900&auto=format&fit=crop" alt="">
+        <div class="auth-modal__media-overlay"></div>
+        <div class="auth-modal__media-text">
+          <span class="logo__mark">
+            <svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1C11 6 6 8 1 8C1 13 6 15 11 21C16 15 21 13 21 8C16 8 11 6 11 1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
           </span>
-          <span class="logo__text">CanvaMarket</span>
-        </a>
-        <p>Materiales para convertir ideas en obras.</p>
-        <div class="footer-socials">
-          <a href="#" aria-label="Instagram de CanvaMarket" class="icon-btn icon-btn--outline">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.2"/><circle cx="12.1" cy="3.9" r="0.9" fill="currentColor"/></svg>
-          </a>
-          <a href="#" aria-label="Pinterest de CanvaMarket" class="icon-btn icon-btn--outline">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/><path d="M6 12L8.3 4.3C9.6 4 11 4.7 11 6.3C11 7.9 10 9.3 8.5 9.3C7.9 9.3 7.4 9 7.2 8.6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-          </a>
+          <p>Materiales seleccionados para convertir tus ideas en obras de arte.</p>
         </div>
       </div>
 
-      <div class="footer-col">
-        <h3>Comprar</h3>
-        <ul>
-          <li><a href="#productos">Pinturas</a></li>
-          <li><a href="#productos">Pinceles</a></li>
-          <li><a href="#formas">Papeles</a></li>
-          <li><a href="#categorias">Canvas</a></li>
-          <li><a href="#productos">Sets</a></li>
-          <li><a href="#productos">Ofertas</a></li>
-        </ul>
-      </div>
+      <div class="auth-modal__body">
+        <div class="auth-modal__header">
+          <span class="section-eyebrow">Bienvenido</span>
+          <h2 id="authModalLabel" class="auth-modal__title">Tu cuenta CanvaMarket</h2>
+        </div>
 
-      <div class="footer-col">
-        <h3>Ayuda</h3>
-        <ul>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Envíos</a></li>
-          <li><a href="#">Devoluciones</a></li>
-          <li><a href="#">Preguntas frecuentes</a></li>
-          <li><a href="#">Métodos de pago</a></li>
-        </ul>
-      </div>
+        <div class="auth-tabs" id="authTabs" data-active="login" role="tablist">
+          <button type="button" class="auth-tab is-active" data-auth-tab="login" role="tab" aria-selected="true">Iniciar sesión</button>
+          <button type="button" class="auth-tab" data-auth-tab="register" role="tab" aria-selected="false">Registrarse</button>
+          <span class="auth-tabs__indicator" aria-hidden="true"></span>
+        </div>
 
-      <div class="footer-col">
-        <h3>Comunidad</h3>
-        <ul>
-          <li><a href="#comunidad">Inspiración</a></li>
-          <li><a href="#">Artistas</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Tutoriales</a></li>
-          <li><a href="#">Instagram</a></li>
-        </ul>
-      </div>
+        <div class="auth-panels">
 
-      <div class="footer-col">
-        <h3>Legal</h3>
-        <ul>
-          <li><a href="#">Términos y condiciones</a></li>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
+          <!-- LOGIN -->
+          <form class="auth-panel is-active" data-auth-panel="login" novalidate>
+            <div class="form-field">
+              <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
+              <label for="loginEmail" class="visually-hidden">Correo electrónico</label>
+              <input type="email" id="loginEmail" placeholder="Correo electrónico" autocomplete="email" required>
+            </div>
+            <div class="form-field">
+              <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
+              <label for="loginPassword" class="visually-hidden">Contraseña</label>
+              <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
+              <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
 
-    <div class="footer-bottom">
-      <p>© 2026 CanvaMarket. Todos los derechos reservados.</p>
+            <div class="auth-panel__row">
+              <label class="auth-checkbox">
+                <input type="checkbox" name="remember">
+                <span>Recordarme</span>
+              </label>
+              <a href="#" class="text-link text-link--small">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="btn btn--primary auth-submit">Iniciar sesión</button>
+
+            <div class="auth-divider"><span>o continúa con</span></div>
+            <div class="auth-social">
+              <button type="button" class="auth-social__btn" aria-label="Continuar con Google"><i class="fa-brands fa-google" aria-hidden="true"></i></button>
+              <button type="button" class="auth-social__btn" aria-label="Continuar con Apple"><i class="fa-brands fa-apple" aria-hidden="true"></i></button>
+              <button type="button" class="auth-social__btn" aria-label="Continuar con Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></button>
+            </div>
+
+            <p class="auth-panel__switch">¿Aún no tienes cuenta? <button type="button" data-auth-tab="register">Regístrate</button></p>
+          </form>
+
+          <!-- REGISTER -->
+          <form class="auth-panel" data-auth-panel="register" novalidate>
+            <div class="form-field">
+              <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
+              <label for="registerName" class="visually-hidden">Nombre completo</label>
+              <input type="text" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
+              <label for="registerEmail" class="visually-hidden">Correo electrónico</label>
+              <input type="email" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
+            </div>
+            <div class="form-field">
+              <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
+              <label for="registerPassword" class="visually-hidden">Contraseña</label>
+              <input type="password" id="registerPassword" placeholder="Contraseña" autocomplete="new-password" required>
+              <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <label class="auth-checkbox auth-checkbox--terms">
+              <input type="checkbox" name="terms" required>
+              <span>Acepto los <a href="#">Términos y condiciones</a> y la <a href="#">Política de privacidad</a></span>
+            </label>
+
+            <button type="submit" class="btn btn--primary auth-submit">Crear cuenta</button>
+
+            <p class="auth-panel__switch">¿Ya tienes cuenta? <button type="button" data-auth-tab="login">Inicia sesión</button></p>
+          </form>
+
+        </div>
+      </div>
     </div>
   </div>
-</footer>
+</div>
 
 <!-- ============ BACK TO TOP ============ -->
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
@@ -193,8 +233,10 @@
 
 <!-- ============ CART TOAST ============ -->
 <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
+
 <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static',filename='js/script.js') }}"></script>
 <script src="{{ url_for('static',filename='js/all.min.js') }}"></script>
+
 </body>
 </html>

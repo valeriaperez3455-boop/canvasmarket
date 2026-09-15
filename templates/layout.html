@@ -190,21 +190,21 @@
           </form>
 
           <!-- REGISTER -->
-          <form class="auth-panel" data-auth-panel="register" novalidate>
+          <form action="{{url_for('signup')}}" method="post" class="auth-panel" data-auth-panel="register" novalidate>
             <div class="form-field">
               <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
               <label for="registerName" class="visually-hidden">Nombre completo</label>
-              <input type="text" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
+              <input type="text" name="nombre" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
             </div>
             <div class="form-field">
               <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
               <label for="registerEmail" class="visually-hidden">Correo electrónico</label>
-              <input type="email" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
+              <input type="email" name="correo" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
             </div>
             <div class="form-field">
               <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
               <label for="registerPassword" class="visually-hidden">Contraseña</label>
-              <input type="password" id="registerPassword" placeholder="Contraseña" autocomplete="new-password" required>
+              <input type="password" name="clave" id="registerPassword" placeholder="Contraseña" autocomplete="new-password" required>
               <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
                 <i class="fa-regular fa-eye" aria-hidden="true"></i>
               </button>

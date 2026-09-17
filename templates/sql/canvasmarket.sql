@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 01-09-2026 a las 16:32:38
--- Versión del servidor: 8.0.45
--- Versión de PHP: 7.4.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 17-09-2026 a las 20:25:24
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,32 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `usuario` (
-  `id` int NOT NULL,
-  `nombre` varchar(150) COLLATE utf8mb4_slovenian_ci NOT NULL,
-  `correo` varchar(150) COLLATE utf8mb4_slovenian_ci NOT NULL,
-  `clave` char(200) COLLATE utf8mb4_slovenian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovenian_ci;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `correo` (`correo`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  `id` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `correo` varchar(150) NOT NULL,
+  `clave` varchar(200) NOT NULL,
+  `perfil` char(1) NOT NULL DEFAULT 'U'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

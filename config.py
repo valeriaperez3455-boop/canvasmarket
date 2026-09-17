@@ -1,10 +1,10 @@
 class Config:
-    SCRET_KEY ='FDHSKJLSSKJD'
+    SECRET_KEY ='FDHSKJLSSKJD'
     DEBUG    =True
 
 class DevelopmentConfig(Config):
-    MYSQL_HOST ='localhost'
-    MYSQL_USER ='root'
+    MYSQL_HOST     ='localhost'
+    MYSQL_USER     ='root'
     MYSQL_PASSWORD ='mysql'
     MYSQL_DB       ='canvasmarket'
 

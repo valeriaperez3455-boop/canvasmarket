@@ -5,9 +5,9 @@ class Config:
 class DevelopmentConfig(Config):
     MYSQL_HOST     ='localhost'
     MYSQL_USER     ='root'
-    MYSQL_PASSWORD ='mysql'
+    MYSQL_PASSWORD =''
     MYSQL_DB       ='canvasmarket'
 
 config = {
-    'development':DevelopmentConfig
+    'development': DevelopmentConfig
 }

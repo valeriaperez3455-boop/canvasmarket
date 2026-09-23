@@ -11,7 +11,7 @@ canvamarketApp  = Flask(__name__)
 canvamarketApp.config.from_object(config['development'])
 
 db              = MySQL(canvamarketApp)
-adminUsuarios = LoginManager (canvamarketApp)
+adminUsuarios   = LoginManager (canvamarketApp)
 
 @adminUsuarios.user_loader
 def agregarUsuario(id):

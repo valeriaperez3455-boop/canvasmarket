@@ -30,7 +30,7 @@ def signup():
         regUsuario = db.connection.cursor()
         regUsuario.execute("INSERT INTO usuario (nombre,correo,clave) VALUES (%s, %s, %s)", (nombre,correo,claveCifrada))
 
-        db.connection.commit
+        db.connection.commit()
         regUsuario.close()
         return redirect(url_for('home'))
 

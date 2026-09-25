@@ -74,9 +74,14 @@
       </div>
     </div>
   </div>
-
+  {% if current_user.is_authenticated and current_user.perfil =='A' %}
+  {% include 'componets/navbar_admin.html' %}
+  {% else  %}
   {% include 'componets/navbar.html' %}
+  {% endif %}
+  
 
+  
 </header>
 
 <!-- ============ MOBILE NAV ============ -->
@@ -154,16 +159,25 @@
         <div class="auth-panels">
 
           <!-- LOGIN -->
-          <form class="auth-panel is-active" data-auth-panel="login" novalidate>
+          <form action="{{url_for('signin')}}" method="post" class="auth-panel is-active" data-auth-panel="login" novalidate>
             <div class="form-field">
+              {% with mensajes = get_flashed_messages() %}
+              {% if mensajes  %}
+                {% for m in mensajes %}
+                <div class="alert alert-danger" role="alert">
+                {{m}}  
+                </div>
+                {% endfor %}
+              {% endif %}
+              {% endwith %}
               <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
               <label for="loginEmail" class="visually-hidden">Correo electrónico</label>
-              <input type="email" id="loginEmail" placeholder="Correo electrónico" autocomplete="email" required>
+              <input type="email" name="correo" id="loginEmail" placeholder="Correo electrónico" autocomplete="email" required>
             </div>
             <div class="form-field">
               <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
               <label for="loginPassword" class="visually-hidden">Contraseña</label>
-              <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
+              <input type="password" name="clave" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
               <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
                 <i class="fa-regular fa-eye" aria-hidden="true"></i>
               </button>

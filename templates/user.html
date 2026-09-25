@@ -1,0 +1,358 @@
+{% extends 'layout.html' %}
+{% block titulo %} CanvaMarket — Materiales para artistas {% endblock %}
+{% block contenido %}
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" aria-label="Presentación">
+    <div class="hero__media" id="heroMedia">
+      <img
+        id="heroImg"
+        src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1600&auto=format&fit=crop"
+        alt="Paleta de acuarelas profesionales con pigmentos de colores"
+        loading="eager"
+        fetchpriority="high">
+      <div class="hero__media-overlay"></div>
+    </div>
+
+    <div class="hero__content">
+      <span class="eyebrow reveal-item" data-reveal="1">CANVAMARKET</span>
+      <h1 class="hero__title">
+        <span class="reveal-word">Todo</span> <span class="reveal-word">lo</span> <span class="reveal-word">que</span> <span class="reveal-word">necesitas</span><br>
+        <span class="reveal-word">para</span> <span class="reveal-word reveal-word--accent">crear.</span>
+      </h1>
+      <p class="hero__desc reveal-item" data-reveal="2">Materiales seleccionados para convertir tus ideas en obras de arte.</p>
+      <a href="#productos" class="btn btn--primary reveal-item" data-reveal="3">
+        Explorar materiales
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg>
+      </a>
+    </div>
+
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span></span>
+      <p>Descubre más</p>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORÍAS ============ -->
+  <section class="categories" id="categorias" aria-labelledby="categories-title">
+    <div class="container">
+      <div class="section-heading reveal-on-scroll">
+        <span class="section-eyebrow">01 — Colección</span>
+        <h2 id="categories-title" class="section-title">Explora por categoría</h2>
+      </div>
+
+      <div class="categories-grid">
+        <a href="#productos" class="category-card category-card--large reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1200&auto=format&fit=crop" alt="Tubos de acuarela profesional con pigmentos vivos" loading="lazy" decoding="async">
+          <div class="category-card__content">
+            <h3>Acuarelas</h3>
+            <p>Color, transparencia y expresión.</p>
+            <span class="category-card__link">Explorar <svg width="12" height="9" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg></span>
+          </div>
+        </a>
+
+        <a href="#productos" class="category-card category-card--large reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=1200&auto=format&fit=crop" alt="Tubos de óleo artístico de colores intensos" loading="lazy" decoding="async">
+          <div class="category-card__content">
+            <h3>Óleos</h3>
+            <p>Profundidad, cuerpo y tradición.</p>
+            <span class="category-card__link">Explorar <svg width="12" height="9" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg></span>
+          </div>
+        </a>
+
+        <a href="#productos" class="category-card category-card--small reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=900&auto=format&fit=crop" alt="Set de pinceles de pintura ordenados" loading="lazy" decoding="async">
+          <div class="category-card__content">
+            <h3>Pinceles</h3>
+            <p>Precisión para cada trazo.</p>
+            <span class="category-card__link">Explorar <svg width="12" height="9" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg></span>
+          </div>
+        </a>
+
+        <a href="#productos" class="category-card category-card--small reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=900&auto=format&fit=crop" alt="Cuaderno de bocetos y papel para dibujo" loading="lazy" decoding="async">
+          <div class="category-card__content">
+            <h3>Papeles</h3>
+            <p>La base de toda gran obra.</p>
+            <span class="category-card__link">Explorar <svg width="12" height="9" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg></span>
+          </div>
+        </a>
+
+        <a href="#productos" class="category-card category-card--small reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1547333590-47fae5f58d21?q=80&w=900&auto=format&fit=crop" alt="Lienzo en blanco listo para pintar" loading="lazy" decoding="async">
+          <div class="category-card__content">
+            <h3>Canvas</h3>
+            <p>El espacio donde todo comienza.</p>
+            <span class="category-card__link">Explorar <svg width="12" height="9" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTOS DESTACADOS ============ -->
+  <section class="featured" id="productos" aria-labelledby="featured-title">
+    <div class="container">
+      <div class="section-heading section-heading--split reveal-on-scroll">
+        <div>
+          <span class="section-eyebrow">02 — Selección</span>
+          <h2 id="featured-title" class="section-title">Favoritos de los artistas</h2>
+        </div>
+        <p class="section-heading__desc">Piezas elegidas por su calidad, pigmentación y comportamiento en el papel.</p>
+      </div>
+
+      <ul class="product-grid" id="productGrid">
+
+        <li class="product-card reveal-on-scroll">
+          <div class="product-card__media">
+            <span class="badge badge--bestseller">Bestseller</span>
+            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=900&auto=format&fit=crop" alt="Set de acuarelas profesionales Winsor" loading="lazy" decoding="async">
+            <button class="btn-add" data-product="Set de Acuarelas Profesionales" data-price="649">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Acuarelas</span>
+            <h3 class="product-card__name">Set de Acuarelas Profesionales</h3>
+            <div class="product-card__rating" aria-label="Calificación 5 de 5">★★★★★</div>
+            <div class="product-card__price">
+              <span class="price">$649 MXN</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="product-card reveal-on-scroll">
+          <div class="product-card__media">
+            <span class="badge badge--new">Nuevo</span>
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=900&auto=format&fit=crop" alt="Kit de pinceles Kolinsky para acuarela y óleo" loading="lazy" decoding="async">
+            <button class="btn-add" data-product="Kit de Pinceles Kolinsky" data-price="389">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Pinceles</span>
+            <h3 class="product-card__name">Kit de Pinceles Kolinsky</h3>
+            <div class="product-card__rating" aria-label="Calificación 5 de 5">★★★★★</div>
+            <div class="product-card__price">
+              <span class="price">$389 MXN</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="product-card reveal-on-scroll">
+          <div class="product-card__media">
+            <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=900&auto=format&fit=crop" alt="Set de óleos artesanales de doce colores" loading="lazy" decoding="async">
+            <button class="btn-add" data-product="Set de Óleos Artesanales" data-price="720">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Óleos</span>
+            <h3 class="product-card__name">Set de Óleos Artesanales</h3>
+            <div class="product-card__rating" aria-label="Calificación 4 de 5">★★★★☆</div>
+            <div class="product-card__price">
+              <span class="price">$720 MXN</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="product-card reveal-on-scroll">
+          <div class="product-card__media">
+            <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=900&auto=format&fit=crop" alt="Sketchbook premium de papel texturizado" loading="lazy" decoding="async">
+            <button class="btn-add" data-product="Sketchbook Premium" data-price="245">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Papeles</span>
+            <h3 class="product-card__name">Sketchbook Premium Texturizado</h3>
+            <div class="product-card__rating" aria-label="Calificación 5 de 5">★★★★★</div>
+            <div class="product-card__price">
+              <span class="price">$245 MXN</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="product-card reveal-on-scroll">
+          <div class="product-card__media">
+            <span class="badge badge--sale">Oferta</span>
+            <img src="https://images.unsplash.com/photo-1547333590-47fae5f58d21?q=80&w=900&auto=format&fit=crop" alt="Canvas profesional de algodón 40 por 50 centímetros" loading="lazy" decoding="async">
+            <button class="btn-add" data-product="Canvas Profesional 40x50" data-price="310">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Canvas</span>
+            <h3 class="product-card__name">Canvas Profesional 40×50</h3>
+            <div class="product-card__rating" aria-label="Calificación 5 de 5">★★★★★</div>
+            <div class="product-card__price">
+              <span class="price">$310 MXN</span>
+              <span class="price price--old">$380 MXN</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="product-card reveal-on-scroll">
+          <div class="product-card__media">
+            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=900&auto=format&fit=crop" alt="Set de pinturas acrílicas Studio de doce tonos" loading="lazy" decoding="async">
+            <button class="btn-add" data-product="Set de Acrílicos Studio" data-price="455">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Acrílicos</span>
+            <h3 class="product-card__name">Set de Acrílicos Studio</h3>
+            <div class="product-card__rating" aria-label="Calificación 4 de 5">★★★★☆</div>
+            <div class="product-card__price">
+              <span class="price">$455 MXN</span>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ BANNER EDITORIAL ============ -->
+  <section class="editorial-banner" aria-label="Campaña Crea sin límites">
+    <div class="editorial-banner__media" id="editorialMedia">
+      <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=1800&auto=format&fit=crop" alt="Artista pintando en un estudio con luz natural" loading="lazy" decoding="async">
+    </div>
+    <div class="editorial-banner__overlay"></div>
+    <div class="editorial-banner__content reveal-on-scroll">
+      <h2>Crea sin límites</h2>
+      <p>Materiales que acompañan cada idea.</p>
+      <a href="#productos" class="btn btn--ghost-light">
+        Descubrir colección
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ PARA CADA FORMA DE CREAR ============ -->
+  <section class="ways" id="formas" aria-labelledby="ways-title">
+    <div class="container">
+      <div class="section-heading reveal-on-scroll">
+        <span class="section-eyebrow">03 — Disciplinas</span>
+        <h2 id="ways-title" class="section-title">Para cada forma de crear</h2>
+      </div>
+
+      <div class="ways-grid">
+        <article class="way-card reveal-on-scroll">
+          <div class="way-card__media">
+            <img src="https://images.unsplash.com/photo-1579762593175-20226054cad0?q=80&w=1000&auto=format&fit=crop" alt="Pintura en proceso con acuarelas de colores" loading="lazy" decoding="async">
+          </div>
+          <h3>Pintura</h3>
+          <p>Acuarelas, óleos y acrílicos.</p>
+          <a href="#productos" class="text-link">Ver materiales →</a>
+        </article>
+
+        <article class="way-card reveal-on-scroll">
+          <div class="way-card__media">
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1000&auto=format&fit=crop" alt="Lápices, carboncillos y herramientas de dibujo" loading="lazy" decoding="async">
+          </div>
+          <h3>Dibujo</h3>
+          <p>Lápices, carboncillos y sketchbooks.</p>
+          <a href="#productos" class="text-link">Ver materiales →</a>
+        </article>
+
+        <article class="way-card reveal-on-scroll">
+          <div class="way-card__media">
+            <img src="https://images.unsplash.com/photo-1583912267550-d6c2ac3196c0?q=80&w=1000&auto=format&fit=crop" alt="Herramientas de creación sobre mesa de trabajo" loading="lazy" decoding="async">
+          </div>
+          <h3>Creación</h3>
+          <p>Canvas, papeles y herramientas.</p>
+          <a href="#productos" class="text-link">Ver materiales →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFICIOS ============ -->
+  <section class="benefits" aria-label="Beneficios de comprar en CanvaMarket">
+    <div class="container">
+      <ul class="benefits-grid">
+        <li class="benefit-item reveal-on-scroll">
+          <span class="benefit-item__icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="9" width="17" height="13" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M19 13H24.5L28 17.5V22H19" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8.5" cy="24.5" r="2.3" stroke="currentColor" stroke-width="1.3"/><circle cx="22.5" cy="24.5" r="2.3" stroke="currentColor" stroke-width="1.3"/></svg>
+          </span>
+          <h3>Envíos seguros</h3>
+          <p>Recibe tus materiales protegidos.</p>
+        </li>
+        <li class="benefit-item reveal-on-scroll">
+          <span class="benefit-item__icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 2L26 7.5V15C26 21.5 21.2 26 15 28C8.8 26 4 21.5 4 15V7.5L15 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M10.5 15L13.5 18L20 11.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Productos seleccionados</h3>
+          <p>Calidad para artistas.</p>
+        </li>
+        <li class="benefit-item reveal-on-scroll">
+          <span class="benefit-item__icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="10" width="24" height="16" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="15" x2="27" y2="15" stroke="currentColor" stroke-width="1.3"/><line x1="7" y1="20.5" x2="13" y2="20.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M9 10V6.5C9 4.6 10.6 3 12.5 3H17.5C19.4 3 21 4.6 21 6.5V10" stroke="currentColor" stroke-width="1.3"/></svg>
+          </span>
+          <h3>Compra segura</h3>
+          <p>Tus pagos están protegidos.</p>
+        </li>
+        <li class="benefit-item reveal-on-scroll">
+          <span class="benefit-item__icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="9" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="21.5" cy="11" r="3.2" stroke="currentColor" stroke-width="1.3"/><path d="M3 26C3 20.5 6.6 17 11 17C15.4 17 19 20.5 19 26" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M19.5 18.5C23.2 18.7 26 21.7 26 26" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span>
+          <h3>Comunidad creativa</h3>
+          <p>Inspírate y comparte.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ COMUNIDAD ============ -->
+  <section class="community" id="comunidad" aria-labelledby="community-title">
+    <div class="container">
+      <div class="section-heading reveal-on-scroll">
+        <span class="section-eyebrow">04 — Comunidad</span>
+        <h2 id="community-title" class="section-title">Hecho para quienes crean</h2>
+        <p class="section-heading__desc">Comparte tu proceso <span class="hashtag">#CanvaMarket</span></p>
+      </div>
+
+      <div class="community-grid">
+        <button class="community-item reveal-on-scroll" type="button" aria-label="Ver publicación de arte destacada">
+          <img src="https://images.unsplash.com/photo-1579762593175-20226054cad0?q=80&w=700&auto=format&fit=crop" alt="Detalle de pintura en acuarela" loading="lazy" decoding="async">
+          <span class="community-item__overlay"><svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 17C10 17 1 11.5 1 5.8C1 2.6 3.4 1 5.8 1C7.6 1 9.2 2 10 3.6C10.8 2 12.4 1 14.2 1C16.6 1 19 2.6 19 5.8C19 11.5 10 17 10 17Z" fill="currentColor"/></svg></span>
+        </button>
+        <button class="community-item reveal-on-scroll" type="button" aria-label="Ver publicación de arte destacada">
+          <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=700&auto=format&fit=crop" alt="Materiales de dibujo sobre mesa de trabajo" loading="lazy" decoding="async">
+          <span class="community-item__overlay"><svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 17C10 17 1 11.5 1 5.8C1 2.6 3.4 1 5.8 1C7.6 1 9.2 2 10 3.6C10.8 2 12.4 1 14.2 1C16.6 1 19 2.6 19 5.8C19 11.5 10 17 10 17Z" fill="currentColor"/></svg></span>
+        </button>
+        <button class="community-item reveal-on-scroll" type="button" aria-label="Ver publicación de arte destacada">
+          <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=700&auto=format&fit=crop" alt="Artista trabajando en su estudio" loading="lazy" decoding="async">
+          <span class="community-item__overlay"><svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 17C10 17 1 11.5 1 5.8C1 2.6 3.4 1 5.8 1C7.6 1 9.2 2 10 3.6C10.8 2 12.4 1 14.2 1C16.6 1 19 2.6 19 5.8C19 11.5 10 17 10 17Z" fill="currentColor"/></svg></span>
+        </button>
+        <button class="community-item reveal-on-scroll" type="button" aria-label="Ver publicación de arte destacada">
+          <img src="https://images.unsplash.com/photo-1583912267550-d6c2ac3196c0?q=80&w=700&auto=format&fit=crop" alt="Sketchbook abierto con bocetos" loading="lazy" decoding="async">
+          <span class="community-item__overlay"><svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 17C10 17 1 11.5 1 5.8C1 2.6 3.4 1 5.8 1C7.6 1 9.2 2 10 3.6C10.8 2 12.4 1 14.2 1C16.6 1 19 2.6 19 5.8C19 11.5 10 17 10 17Z" fill="currentColor"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="newsletter" aria-labelledby="newsletter-title">
+    <div class="container newsletter__inner reveal-on-scroll">
+      <div class="newsletter__text">
+        <span class="section-eyebrow section-eyebrow--dark">Inspiración en tu bandeja</span>
+        <h2 id="newsletter-title">Recibe novedades, nuevos productos, tutoriales y contenido para artistas.</h2>
+      </div>
+      <form class="newsletter__form" id="newsletterForm" novalidate>
+        <label for="newsletterEmail" class="visually-hidden">Correo electrónico</label>
+        <div class="newsletter__field">
+          <input type="email" id="newsletterEmail" name="email" placeholder="Tu email" autocomplete="email" required>
+          <button type="submit" aria-label="Suscribirme">
+            <svg width="16" height="12" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M0 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+        </div>
+        <p class="newsletter__msg" id="newsletterMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+
+{% endblock %}

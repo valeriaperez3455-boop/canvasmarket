@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
-from flask_login import LoginManager, login_user, login_required, current_user
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from config import config
 from werkzeug.security import generate_password_hash
 from models.entities.User import User
@@ -45,7 +45,7 @@ def signin():
                 if usuarioAutenticado.perfil == 'A':
                     return render_template('admin.html')
                 else:
-                    return render_template('user.html')
+                    return redirect (url_for('home_user'))
             else:
                 flash('Contraseña Incorrecta')
                 redirect(url_for('home'))
@@ -54,6 +54,20 @@ def signin():
             redirect(url_for('home'))
     else:
         render_template('home.html')
+@canvamarketApp.route('/signout', methods = ['GET', 'POST'])
+def signout():
+    logout_user()
+    return redirect(url_for('home'))
+
+@canvamarketApp.route ('/home_admin', methods = ['GET', 'POST'])
+@login_required
+def home_admin ():
+    return render_template ('admin.html')
+
+@canvamarketApp.route ('/home_user', methods = ['GET', 'POST'])
+@login_required
+def home_user ():
+    return render_template ('user.html')
 
 if __name__ == '__main__':
     canvamarketApp.run(port=5812)

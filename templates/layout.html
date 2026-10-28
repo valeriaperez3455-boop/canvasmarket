@@ -66,9 +66,12 @@
 
  
   {% if current_user.is_authenticated and current_user.perfil =='A' %}
-  {% include 'componets/navbar_admin.html' %}
+    {% include 'componets/navbar_admin.html' %}
+  {% elif current_user.is_authenticated and current_user.perfil == 'U'%}
+    {% include 'componets/navbar_user.html' %}
+
   {% else  %}
-  {% include 'componets/navbar.html' %}
+    {% include 'componets/navbar.html' %}
   {% endif %}
 </header>
   

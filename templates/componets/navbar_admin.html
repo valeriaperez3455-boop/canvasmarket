@@ -27,7 +27,7 @@
           <a class="btn btn--ghost btn--sm" href="#">
             <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i> {{ current_user.nombre }}
           </a>
-          <a class="btn btn--primary btn--sm" href="{{ url_for('signin') }}">
+          <a class="btn btn--primary btn--sm" href="{{ url_for('signout') }}">
             <i class="fa-solid fa-user-plus" aria-hidden="true"></i> Cerrar sesión
           </a>
         </div>
@@ -102,7 +102,7 @@
     <li><a href="#comunidad">Inspiración</a></li>
   </ul>
   <div class="mobile-nav__auth">
-    <a href="{{ url_for('signin') }}" class="btn btn--outline-dark">Cerrar sesión</a>
+    <a href="{{ url_for('signout') }}" class="btn btn--outline-dark">Cerrar sesión</a>
   </div>
   <div class="mobile-nav__footer">
     <a href="#" class="icon-text-link">Tiendas</a>

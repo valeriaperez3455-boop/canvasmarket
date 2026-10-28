@@ -21,59 +21,14 @@
 <a class="skip-link" href="#main">Saltar al contenido</a>
 
 <!-- ============ HEADER ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileNav">
-        <span></span><span></span><span></span>
-      </button>
-
-      <a href="#top" class="logo" aria-label="CanvaMarket, ir al inicio">
-        <span class="logo__mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 1C11 6 6 8 1 8C1 13 6 15 11 21C16 15 21 13 21 8C16 8 11 6 11 1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span class="logo__text">CanvaMarket</span>
-      </a>
-
-      <div class="topbar__actions">
-        <button class="icon-btn" id="searchToggle" aria-label="Buscar" aria-expanded="false" aria-controls="searchBar">
-          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6.5" stroke="currentColor" stroke-width="1.3"/><line x1="13.3" y1="13.6" x2="17.5" y2="17.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-        </button>
-        <button class="icon-btn icon-btn--desktop-only" aria-label="Tiendas cercanas">
-          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.5 18C9.5 18 16 12.4 16 7.5C16 3.9 13.1 1 9.5 1C5.9 1 3 3.9 3 7.5C3 12.4 9.5 18 9.5 18Z" stroke="currentColor" stroke-width="1.3"/><circle cx="9.5" cy="7.5" r="2.4" stroke="currentColor" stroke-width="1.3"/></svg>
-        </button>
-        <button class="icon-btn" aria-label="Mi cuenta">
-          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9.5" cy="5.8" r="3.3" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 17.5C2.5 13.6 5.6 11 9.5 11C13.4 11 16.5 13.6 16.5 17.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-        </button>
-        <button class="icon-btn icon-btn--cart" id="cartBtn" aria-label="Carrito de compras, 0 productos">
-          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 5H4L5.7 13.4C5.85 14.15 6.5 14.7 7.28 14.7H14.6C15.35 14.7 16 14.17 16.17 13.44L17.5 7.5H4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.8" cy="17.3" r="1" fill="currentColor"/><circle cx="14.3" cy="17.3" r="1" fill="currentColor"/></svg>
-          <span class="cart-badge" id="cartBadge">0</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="search-bar" id="searchBar">
-      <div class="container">
-        <form role="search" class="search-bar__form">
-          <svg width="17" height="17" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6.5" stroke="currentColor" stroke-width="1.3"/><line x1="13.3" y1="13.6" x2="17.5" y2="17.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-          <input type="search" placeholder="Buscar acuarelas, pinceles, sketchbooks…" aria-label="Buscar productos">
-        </form>
-      </div>
-    </div>
-  </div>
-
- 
-  {% if current_user.is_authenticated and current_user.perfil =='A' %}
-    {% include 'componets/navbar_admin.html' %}
-  {% elif current_user.is_authenticated and current_user.perfil == 'U'%}
-    {% include 'componets/navbar_user.html' %}
-
-  {% else  %}
-    {% include 'componets/navbar.html' %}
-  {% endif %}
-</header>
+<!-- Cada navbar de componets/ ya trae su propia etiqueta header: aquí solo se incluye una -->
+{% if current_user.is_authenticated and current_user.perfil == 'A' %}
+  {% include 'componets/navbar_admin.html' %}
+{% elif current_user.is_authenticated %}
+  {% include 'componets/navbar_user.html' %}
+{% else %}
+  {% include 'componets/navbar.html' %}
+{% endif %}
   
   
 
@@ -91,7 +46,9 @@
 {% include 'componets/footer.html' %}
 
 <!-- ============ AUTH MODAL (LOGIN / REGISTER) ============ -->
-<div class="modal fade auth-modal" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+{% set mensajes = get_flashed_messages(with_categories=true) %}
+{% set auth_tab = 'register' if (mensajes | selectattr(0, 'equalto', 'register') | list) else 'login' %}
+<div class="modal fade auth-modal" id="authModal" data-open-on-load="{{ 'true' if mensajes else 'false' }}" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
@@ -116,26 +73,20 @@
           <h2 id="authModalLabel" class="auth-modal__title">Tu cuenta CanvaMarket</h2>
         </div>
 
-        <div class="auth-tabs" id="authTabs" data-active="login" role="tablist">
-          <button type="button" class="auth-tab is-active" data-auth-tab="login" role="tab" aria-selected="true">Iniciar sesión</button>
-          <button type="button" class="auth-tab" data-auth-tab="register" role="tab" aria-selected="false">Registrarse</button>
+        <div class="auth-tabs" id="authTabs" data-active="{{ auth_tab }}" role="tablist">
+          <button type="button" class="auth-tab {% if auth_tab == 'login' %}is-active{% endif %}" data-auth-tab="login" role="tab" aria-selected="{{ 'true' if auth_tab == 'login' else 'false' }}">Iniciar sesión</button>
+          <button type="button" class="auth-tab {% if auth_tab == 'register' %}is-active{% endif %}" data-auth-tab="register" role="tab" aria-selected="{{ 'true' if auth_tab == 'register' else 'false' }}">Registrarse</button>
           <span class="auth-tabs__indicator" aria-hidden="true"></span>
         </div>
 
         <div class="auth-panels">
 
           <!-- LOGIN -->
-          <form action="{{url_for('signin')}}" method="post" class="auth-panel is-active" data-auth-panel="login" novalidate>
+          <form action="{{ url_for('signin') }}" method="post" class="auth-panel {% if auth_tab != 'register' %}is-active{% endif %}" data-auth-panel="login">
+            {% for categoria, m in mensajes if categoria != 'register' %}
+              <div class="alert {% if categoria == 'login_ok' %}alert-success{% else %}alert-danger{% endif %} mb-0" role="alert">{{ m }}</div>
+            {% endfor %}
             <div class="form-field">
-              {% with mensajes = get_flashed_messages() %}
-              {% if mensajes  %}
-                {% for m in mensajes %}
-                <div class="alert alert-danger" role="alert">
-                {{m}}  
-                </div>
-                {% endfor %}
-              {% endif %}
-              {% endwith %}
               <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
               <label for="loginEmail" class="visually-hidden">Correo electrónico</label>
               <input type="email" name="correo" id="loginEmail" placeholder="Correo electrónico" autocomplete="email" required>
@@ -170,7 +121,10 @@
           </form>
 
           <!-- REGISTER -->
-          <form action="{{url_for('signup')}}" method="post" >
+          <form action="{{ url_for('signup') }}" method="post" class="auth-panel {% if auth_tab == 'register' %}is-active{% endif %}" data-auth-panel="register">
+            {% for categoria, m in mensajes if categoria == 'register' %}
+              <div class="alert alert-danger mb-0" role="alert">{{ m }}</div>
+            {% endfor %}
             <div class="form-field">
               <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
               <label for="registerName" class="visually-hidden">Nombre completo</label>

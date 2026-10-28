@@ -326,9 +326,9 @@
 
   /* ===================================================
      AUTH MODAL MODULE
-     (solo UI/animación: cambio de pestañas y visibilidad
-     de contraseña. No incluye lógica de autenticación real;
-     el envío de los formularios solo evita la recarga de página.)
+     (UI: cambio de pestañas, ver/ocultar contraseña y abrir el
+     modal cuando Flask manda un mensaje. El envío de los
+     formularios lo procesa Flask en /signin y /signup.)
      =================================================== */
   const AuthModal = (() => {
     const modalEl = document.getElementById("authModal");
@@ -379,11 +379,15 @@
       });
     };
 
-    const preventDemoSubmit = () => {
-      // Solo evita la recarga de página; no procesa ni valida datos.
-      modalEl.querySelectorAll(".auth-panel").forEach((form) => {
-        form.addEventListener("submit", (e) => e.preventDefault());
-      });
+    // ANTES aquí había un preventDefault() en el submit de los formularios
+    // .auth-panel. Eso bloqueaba el envío del login a Flask (/signin) y por
+    // eso "no pasaba nada". Ya se eliminó: los formularios se envían normal.
+
+    const openIfHasMessages = () => {
+      // Si Flask mandó un mensaje (contraseña incorrecta, usuario inexistente,
+      // cuenta creada...), abrimos el modal para que el usuario lo vea.
+      if (modalEl.dataset.openOnLoad !== "true" || !window.bootstrap) return;
+      window.bootstrap.Modal.getOrCreateInstance(modalEl).show();
     };
 
     const init = () => {
@@ -391,7 +395,7 @@
       bindTabSwitching();
       bindPasswordToggles();
       bindOpenTargets();
-      preventDemoSubmit();
+      openIfHasMessages();
     };
 
     return { init };

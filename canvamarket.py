@@ -115,6 +115,11 @@ def home_user():
         return redirect(url_for('home_admin'))
     return render_template('user.html')
 
+@canvamarketApp.route('/sUsuario', methods=['GET', 'POST'])
+@login_required
+def sUsuario():
+    return render_template('users.html')
+
 
 if __name__ == '__main__':
     canvamarketApp.run(port=5812)

@@ -2,6 +2,81 @@
 {% block titulo %} Administrador {% endblock %}
 {% block contenido %}
 
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Clave</th>
+          <th scope="col">Perfil</th>
+          
+          <th scope="col" colspan="2"><!-- Button insert modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fa-regular fa-user"></i>
+        </button>
+      </th>
+        </tr>
+                
+
+        <!-- Modal insert -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="" method="post">
+              <div class="modal-body">
+                    <div class="form-field">
+                  <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
+                  <label for="registerName" class="visually-hidden">Nombre completo</label>
+                  <input type="text" name="nombre" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
+                  <label for="registerEmail" class="visually-hidden">Correo electrónico</label>
+                  <input type="email" name="correo" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
+                </div>
+                <div class="form-field">
+                  <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
+                  <label for="registerPassword" class="visually-hidden">Contraseña</label>
+                  <input type="password" name="clave" id="registerPassword" placeholder="Contraseña" autocomplete="new-password" required>
+                  <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
+                    <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </thead>
+      <tbody>
+        {% for u in usuarios %}
+        <tr>
+          <th scope="row">{{u[0]}}</th>
+          <td>{{u[1]}}</td>
+          <td>{{u[2]}}</td>
+          <td>{{u[3]| truncate(20)}}</td>
+          <td>{{u[4]}}</td>
+          <td>Boton Editar</td>
+          <td>Boton Eliminar</td>
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+  </div>
+
   <!-- ============ HERO ============ -->
   <section class="hero" id="top" aria-label="Presentación">
     <div class="hero__media" id="heroMedia">

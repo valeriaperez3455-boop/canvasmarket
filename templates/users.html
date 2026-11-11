@@ -12,7 +12,8 @@
           <th scope="col">Clave</th>
           <th scope="col">Perfil</th>
           
-          <th scope="col" colspan="2"><!-- Button insert modal -->
+          <th scope="col" colspan="2">
+          <!-- Button insert modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fa-regular fa-user"></i>
         </button>
@@ -28,7 +29,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <form action="" method="post">
+              <form action="{{url_for('iUsuario')}}" method="post">
               <div class="modal-body">
                     <div class="form-field">
                   <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
@@ -48,12 +49,21 @@
                     <i class="fa-regular fa-eye" aria-hidden="true"></i>
                   </button>
                 </div>
+                <div class="form-field">
+                  <select name="perfil" class="form-select" aria-label="Default select example">
+                    <option selected> Perfil </option>
+                    <option value="A">Administrador</option>
+                    <option value="U">Usuario</option>
+
+                  </select>
+                  
+                </div>
 
                 ...
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Crear usuario</button>
               </div>
               </form>
             </div>
@@ -68,9 +78,62 @@
           <td>{{u[2]}}</td>
           <td>{{u[3]| truncate(20)}}</td>
           <td>{{u[4]}}</td>
-          <td>Boton Editar</td>
+          <td>
+            <!-- Button update modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal{{u[0]}}">
+          <i class="fa-regular fa-user"></i>
+        </button>
+          </td>
           <td>Boton Eliminar</td>
         </tr>
+        <!-- Modal update -->
+        <div class="modal fade" id="updateModal{{u[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{url_for('uUsuario',id=u[0])}}" method="post">
+              <div class="modal-body">
+                    <div class="form-field">
+                  <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
+                  <label for="registerName" class="visually-hidden">Nombre completo</label>
+                  <input type="text" name="nombre" value="{{u[1]}}" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
+                  <label for="registerEmail" class="visually-hidden">Correo electrónico</label>
+                  <input type="email" name="correo" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
+                </div>
+                <div class="form-field">
+                  <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
+                  <label for="registerPassword" class="visually-hidden">Contraseña</label>
+                  <input type="password" name="clave" id="registerPassword" placeholder="Contraseña" autocomplete="new-password" required>
+                  <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
+                    <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="form-field">
+                  <select name="perfil" class="form-select" aria-label="Default select example">
+                    <option selected> Perfil </option>
+                    <option value="A">Administrador</option>
+                    <option value="U">Usuario</option>
+
+                  </select>
+                  
+                </div>
+
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Crear usuario</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
         {% endfor %}
         
       </tbody>

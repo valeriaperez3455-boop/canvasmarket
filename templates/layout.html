@@ -122,10 +122,15 @@
 
           <!-- REGISTER -->
           <form action="{{ url_for('signup') }}" method="post" class="auth-panel {% if auth_tab == 'register' %}is-active{% endif %}" data-auth-panel="register">
-            {% for categoria, m in mensajes if categoria == 'register' %}
+            {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+              {% for m in mensajes %}
               <div class="alert alert-danger mb-0" role="alert">{{ m }}</div>
-            {% endfor %}
+            {{m}}
             <div class="form-field">
+              {% endfor %}
+            {% endif %}
+            {% endwith %}
               <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
               <label for="registerName" class="visually-hidden">Nombre completo</label>
               <input type="text" name="nombre" id="registerName" placeholder="Nombre completo" autocomplete="name" required>

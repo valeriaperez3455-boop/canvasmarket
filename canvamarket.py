@@ -113,7 +113,7 @@ def home_admin():
 def home_user():
     if current_user.perfil == 'A':
         return redirect(url_for('home_admin'))
-    return render_template('user.html')
+    return render_template('home_user.html')
 
 @canvamarketApp.route('/sUsuario', methods=['GET', 'POST'])
 @login_required
@@ -127,6 +127,55 @@ def sUsuario():
     else:
         return render_template('home.html')
 
+
+@canvamarketApp.route ('/uUsuario/<int:id>', methods = ['GET', 'POST'])
+@login_required
+def uUsuario (id):
+    if current_user.perfil == 'A':
+        nombre = request.form ['nombre']
+        correo = request.form ['correo']
+        perfil = request.form ['perfil']
+        actUsuario = db.connection.cursor()
+        actUsuario.execute("UPDATE usuario SET nombre = %s, correo = %s, perfil = %s WHERE id = %s", (nombre, correo, perfil, id))
+        db.connection.commit()
+        actUsuario.close()
+        flash ('Registro actualizado')
+        return redirect(url_for('sUsuario'))
+    else:
+        render_template('home.html')
+
+
+@canvamarketApp.route ('/iUsuario', methods = ['GET', 'POST'])
+@login_required
+def iUsuario ():
+    if current_user.perfil == 'A':
+        nombre = request.form ['nombre']
+        correo = request.form ['correo']
+        perfil = request.form ['perfil']
+        clave = request.form ['clave']
+        claveCifrada = generate_password_hash (clave)
+        regUsuario = db.connection.cursor()
+        regUsuario.execute ("INSERT INTO usuario (nombre, correo, clave, perfil) VALUES (%s, %s, %s, %s)", (nombre, correo,claveCifrada, perfil))
+        db.connection.commit()
+        flash ('Usuario registrado')
+        regUsuario.close ()
+        return redirect(url_for('sUsuario'))
+    else:
+        return render_template ('home.html')
+    
+
+@canvamarketApp.route ('/dUsuario/<int:id>', methods = ['GET', 'POST'])
+@login_required
+def dUsuario ():
+    if current_user.perfil == 'A':   
+        delUsuario = db.connection.cursor()     
+        delUsuario.execute ("DELETE FROM usuario WHERE  id = %s", (id))
+        db.connection.commit()
+        delUsuario.close()
+        flash ('Usuario Eliminado')
+    else: 
+        return render_template ('home.html')
+        
 
 if __name__ == '__main__':
     canvamarketApp.run(port=5812)

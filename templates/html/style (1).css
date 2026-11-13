@@ -1202,3 +1202,367 @@ section{ padding-block: clamp(64px, 9vw, 128px); }
   .auth-modal__body{ padding: 28px 22px; }
   .auth-social{ grid-template-columns: repeat(3, 1fr); }
 }
+
+/* =========================================================
+   22. MODAL USUARIO (Bootstrap 5.3 + marca CanvaMarket)
+   Se apoya en las variables CSS de Bootstrap (--bs-*), así
+   que .modal, .form-control, .input-group, .btn-check,
+   .invalid-feedback… siguen funcionando igual: solo cambia
+   la piel. Carga este archivo DESPUÉS de bootstrap.min.css.
+   ========================================================= */
+
+/* ---- 22.1 Botón que abre la modal ---- */
+.btn.btn-user-modal{
+  --bs-btn-bg: var(--color-black);
+  --bs-btn-border-color: var(--color-black);
+  --bs-btn-color: var(--color-white);
+  --bs-btn-hover-bg: var(--color-brown);
+  --bs-btn-hover-border-color: var(--color-brown);
+  --bs-btn-hover-color: var(--color-white);
+  --bs-btn-active-bg: #7E5B5B;
+  --bs-btn-active-border-color: #7E5B5B;
+  --bs-btn-active-color: var(--color-white);
+  --bs-btn-focus-shadow-rgb: 152,112,112;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-sm);
+  background-image: none;
+}
+.btn-user-modal i{
+  font-size: 0.95rem;
+  transition: transform var(--transition-fast);
+}
+.btn-user-modal:hover i{ transform: scale(1.15) rotate(-6deg); }
+
+/* ---- 22.2 Contenedor de la modal ---- */
+.user-modal{
+  /* Modal */
+  --bs-modal-width: 680px;
+  --bs-modal-bg: var(--color-white);
+  --bs-modal-color: var(--color-text);
+  --bs-modal-border-width: 0;
+  --bs-modal-border-radius: var(--radius-lg);
+  --bs-modal-inner-border-radius: var(--radius-lg);
+  --bs-modal-box-shadow: 0 40px 90px rgba(32,27,27,0.28);
+  --bs-modal-header-padding: 26px 32px 22px;
+  --bs-modal-header-border-color: var(--color-border);
+  --bs-modal-footer-border-color: var(--color-border);
+  --bs-modal-footer-bg: var(--color-white);
+  --bs-modal-footer-gap: 10px;
+
+  /* Formularios (scope solo dentro de la modal) */
+  --bs-body-color: var(--color-text);
+  --bs-body-bg: var(--color-white);
+  --bs-border-color: var(--color-border-strong);
+  --bs-border-radius: var(--radius-sm);
+  --bs-tertiary-bg: var(--color-cream);
+  --bs-secondary-color: var(--color-muted);
+  --bs-form-invalid-color: #7A2E2E;
+  --bs-form-invalid-border-color: #7A2E2E;
+  --bs-form-valid-color: #315C3B;
+  --bs-form-valid-border-color: #315C3B;
+
+  font-family: var(--font-body);
+}
+
+/* Entrada suave (misma curva que .auth-modal) */
+.user-modal.fade .modal-dialog{
+  transform: translateY(26px) scale(0.97);
+  transition: transform var(--transition-normal);
+}
+.user-modal.show .modal-dialog{ transform: none; }
+
+.user-modal .modal-content{
+  box-shadow: var(--bs-modal-box-shadow);
+  overflow: hidden;
+}
+
+/* El <form> envuelve body + footer: se mantiene el scroll de .modal-dialog-scrollable */
+.user-modal .modal-content > form{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ---- 22.3 Header ---- */
+.user-modal .modal-header{
+  align-items: flex-start;
+  background: var(--color-cream);
+}
+.user-modal__heading .section-eyebrow{ margin-bottom: 6px; }
+.user-modal .modal-title{
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.user-modal .modal-header .btn-close{
+  --bs-btn-close-opacity: 0.7;
+  --bs-btn-close-hover-opacity: 1;
+  --bs-btn-close-focus-shadow: 0 0 0 3px rgba(152,112,112,0.25);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: -4px -6px 0 auto;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  background-size: 11px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+.user-modal .modal-header .btn-close:hover{ transform: rotate(90deg); }
+
+/* ---- 22.4 Body + campos ---- */
+.user-modal .modal-body{ padding: 28px 32px 24px; }
+
+.user-modal .form-label{
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brown);
+  margin-bottom: 8px;
+}
+.user-modal .req{ color: var(--color-rose); }
+
+.user-modal .form-control,
+.user-modal .form-select{
+  padding: 12px 14px;
+  font-size: 0.94rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.user-modal .form-control:focus,
+.user-modal .form-select:focus{
+  border-color: var(--color-brown);
+  box-shadow: 0 0 0 3px rgba(152,112,112,0.16);
+}
+
+.user-modal .form-text{
+  font-size: 0.76rem;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+.user-modal .invalid-feedback{ font-size: 0.78rem; }
+
+/* Input-group: icono + campo se iluminan juntos */
+.user-modal .input-group{
+  border-radius: var(--radius-sm);
+  transition: box-shadow var(--transition-fast);
+}
+.user-modal .input-group-text{
+  min-width: 46px;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+}
+.user-modal .input-group:focus-within{ box-shadow: 0 0 0 3px rgba(152,112,112,0.16); }
+.user-modal .input-group .form-control:focus{ box-shadow: none; }
+.user-modal .input-group:focus-within .input-group-text,
+.user-modal .input-group:focus-within .user-modal__toggle{
+  border-color: var(--color-brown);
+  color: var(--color-brown);
+  background-color: var(--color-white);
+}
+
+/* Estado inválido también en el icono del grupo */
+.user-modal .was-validated .input-group:has(.form-control:invalid) .input-group-text,
+.user-modal .was-validated .input-group:has(.form-control:invalid) .user-modal__toggle{
+  border-color: var(--bs-form-invalid-border-color);
+  color: var(--bs-form-invalid-color);
+}
+.user-modal .was-validated .input-group:has(.form-control:invalid):focus-within{
+  box-shadow: 0 0 0 3px rgba(122,46,46,0.14);
+}
+
+/* Botón mostrar / ocultar contraseña */
+.user-modal .btn.user-modal__toggle{
+  --bs-btn-color: var(--color-muted);
+  --bs-btn-border-color: var(--color-border-strong);
+  --bs-btn-hover-bg: var(--color-cream);
+  --bs-btn-hover-color: var(--color-text);
+  --bs-btn-hover-border-color: var(--color-border-strong);
+  --bs-btn-active-bg: var(--color-cream);
+  --bs-btn-active-color: var(--color-text);
+  --bs-btn-active-border-color: var(--color-border-strong);
+  --bs-btn-focus-shadow-rgb: 152,112,112;
+  padding: 0 16px;
+  font-size: 0.9rem;
+}
+
+/* ---- 22.5 Perfil (U / A) como control segmentado con .btn-check ---- */
+.user-role{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  background: var(--color-cream);
+  border-radius: 999px;
+}
+.user-role .btn.user-role__option{
+  --bs-btn-color: var(--color-muted);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: rgba(255,255,255,0.65);
+  --bs-btn-hover-color: var(--color-text);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: var(--color-black);
+  --bs-btn-active-color: var(--color-white);
+  --bs-btn-active-border-color: var(--color-black);
+  --bs-btn-focus-shadow-rgb: 152,112,112;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+/* ---- 22.6 Carga de imagen (input file + arrastrar y soltar) ---- */
+.user-upload{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: #FBF7F1;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+.user-upload:hover,
+.user-upload:focus-within{ border-color: var(--color-rose); }
+.user-upload.is-dragover{
+  border-color: var(--color-brown);
+  background: var(--color-cream);
+}
+
+.user-upload__preview{
+  position: relative;
+  flex: 0 0 84px;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-cream);
+  color: var(--color-rose);
+  font-size: 1.8rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: transform var(--transition-fast);
+}
+.user-upload.is-dragover .user-upload__preview{ transform: scale(1.06); }
+.user-upload__preview img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.user-upload.has-image .user-upload__preview img{ display: block; }
+.user-upload.has-image .user-upload__preview i{ display: none; }
+
+.user-upload__body{ flex: 1; min-width: 0; }
+.user-upload__title{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.user-upload__title i{ color: var(--color-brown); }
+.user-upload__hint{
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-bottom: 12px;
+}
+
+/* Input file de Bootstrap con botón de la marca */
+.user-modal .form-control[type="file"]{
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+.user-modal .form-control::file-selector-button{
+  margin: -10px 14px -10px -14px;
+  margin-inline-end: 14px;
+  padding: 10px 16px;
+  border: 0;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.user-modal .form-control:hover:not(:disabled):not([readonly])::file-selector-button{
+  background-color: var(--color-brown);
+}
+/* La imagen es opcional: sin check verde cuando está vacía/válida */
+.user-modal .was-validated .form-control[type="file"]:valid{
+  border-color: var(--bs-border-color);
+  background-image: none;
+  padding-right: 14px;
+}
+
+/* ---- 22.7 Footer ---- */
+.user-modal .modal-footer{ padding: 18px 32px 26px; }
+.user-modal__note{
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+.user-modal .modal-footer .btn{
+  background-image: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 24px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+.user-modal .btn-secondary{
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--color-text);
+  --bs-btn-border-color: var(--color-border-strong);
+  --bs-btn-hover-bg: var(--color-cream);
+  --bs-btn-hover-color: var(--color-text);
+  --bs-btn-hover-border-color: var(--color-border-strong);
+  --bs-btn-active-bg: var(--color-pink);
+  --bs-btn-active-color: var(--color-text);
+  --bs-btn-active-border-color: var(--color-pink);
+  --bs-btn-focus-shadow-rgb: 152,112,112;
+}
+.user-modal .btn-primary{
+  --bs-btn-bg: var(--color-black);
+  --bs-btn-border-color: var(--color-black);
+  --bs-btn-color: var(--color-white);
+  --bs-btn-hover-bg: var(--color-brown);
+  --bs-btn-hover-border-color: var(--color-brown);
+  --bs-btn-hover-color: var(--color-white);
+  --bs-btn-active-bg: #7E5B5B;
+  --bs-btn-active-border-color: #7E5B5B;
+  --bs-btn-active-color: var(--color-white);
+  --bs-btn-focus-shadow-rgb: 152,112,112;
+}
+
+/* ---- 22.8 Responsive ---- */
+@media (max-width: 575.98px){
+  .user-modal{ --bs-modal-header-padding: 22px 22px 18px; }
+  .user-modal .modal-dialog{ margin: 14px; }
+  .user-modal .modal-body{ padding: 22px 22px 6px; }
+  .user-modal .modal-footer{ padding: 16px 22px 22px; }
+
+  .user-upload{ flex-direction: column; text-align: center; }
+  .user-upload__title{ flex-direction: column; gap: 6px; }
+
+  .user-modal__note{ width: 100%; }
+  .user-modal .modal-footer .btn{ flex: 1; justify-content: center; }
+}

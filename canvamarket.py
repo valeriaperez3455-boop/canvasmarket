@@ -105,7 +105,7 @@ def signout():
 def home_admin():
     if current_user.perfil != 'A':
         return redirect(url_for('home_user'))
-    return render_template('admin.html')
+    return render_template('home_admin.html')
 
 
 @canvamarketApp.route('/home_user', methods=['GET', 'POST'])

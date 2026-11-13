@@ -3,6 +3,17 @@
 {% block contenido %}
 
   <div class="container">
+
+    {% with mensajes = get_flashed_messages() %}
+      {% if mensajes %}
+        {% for m in mensajes %}
+          <div class="alert alert-success" role="alert">
+            {{m}}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <table class="table">
       <thead>
         <tr>
@@ -19,56 +30,6 @@
         </button>
       </th>
         </tr>
-                
-
-        <!-- Modal insert -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <form action="{{url_for('iUsuario')}}" method="post">
-              <div class="modal-body">
-                    <div class="form-field">
-                  <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
-                  <label for="registerName" class="visually-hidden">Nombre completo</label>
-                  <input type="text" name="nombre" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
-                </div>
-                <div class="form-field">
-                  <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
-                  <label for="registerEmail" class="visually-hidden">Correo electrónico</label>
-                  <input type="email" name="correo" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
-                </div>
-                <div class="form-field">
-                  <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
-                  <label for="registerPassword" class="visually-hidden">Contraseña</label>
-                  <input type="password" name="clave" id="registerPassword" placeholder="Contraseña" autocomplete="new-password" required>
-                  <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
-                    <i class="fa-regular fa-eye" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="form-field">
-                  <select name="perfil" class="form-select" aria-label="Default select example">
-                    <option selected> Perfil </option>
-                    <option value="A">Administrador</option>
-                    <option value="U">Usuario</option>
-
-                  </select>
-                  
-                </div>
-
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Crear usuario</button>
-              </div>
-              </form>
-            </div>
-          </div>
-        </div>
       </thead>
       <tbody>
         {% for u in usuarios %}
@@ -86,33 +47,48 @@
           </td>
           <td> <!-- Button eliminar -->
             <!-- Botón que abre la modal de eliminar -->
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#{u[0]}">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{u[0]}}">
               <i class="fa-solid fa-trash-can" aria-hidden="true"></i> Eliminar
+            </button>
+          </td>
         </tr>
-        <!-- Modal update -->
-        <div class="modal fade" id="updateModal{{u[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {% endfor %}
+        
+      </tbody>
+    </table>
+  </div>
+
+        <!-- Modal insert -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar usuario</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <form action="{{url_for('uUsuario',id=u[0])}}" method="post">
+              <form action="{{url_for('iUsuario')}}" method="post">
               <div class="modal-body">
                     <div class="form-field">
                   <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
-                  <label for="registerName" class="visually-hidden">Nombre completo</label>
-                  <input type="text" name="nombre" value="{{u[1]}}" id="registerName" placeholder="Nombre completo" autocomplete="name" required>
+                  <label for="regName" class="visually-hidden">Nombre completo</label>
+                  <input type="text" name="nombre" id="regName" placeholder="Nombre completo" autocomplete="name" required>
                 </div>
                 <div class="form-field">
                   <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
-                  <label for="registerEmail" class="visually-hidden">Correo electrónico</label>
-                  <input type="email" name="correo" value="{{u[2]}}" id="registerEmail" placeholder="Correo electrónico" autocomplete="email" required>
+                  <label for="regEmail" class="visually-hidden">Correo electrónico</label>
+                  <input type="email" name="correo" id="regEmail" placeholder="Correo electrónico" autocomplete="email" required>
                 </div>
-                
                 <div class="form-field">
-                  <select name="perfil" class="form-select" aria-label="Default select example">
-                    <option selected> Perfil </option>
+                  <i class="fa-solid fa-lock form-field__icon" aria-hidden="true"></i>
+                  <label for="regPassword" class="visually-hidden">Contraseña</label>
+                  <input type="password" name="clave" id="regPassword" placeholder="Contraseña" autocomplete="new-password" required>
+                  <button type="button" class="form-field__toggle" data-toggle-password aria-label="Mostrar contraseña">
+                    <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="form-field">
+                  <select name="perfil" id="regPerfil" class="form-select" aria-label="Perfil" required>
+                    <option value="" selected disabled> Perfil </option>
                     <option value="A">Administrador</option>
                     <option value="U">Usuario</option>
 
@@ -120,10 +96,50 @@
                   
                 </div>
 
-                ...
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Crear usuario</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {% for u in usuarios %}
+        <!-- Modal update -->
+        <div class="modal fade" id="updateModal{{u[0]}}" tabindex="-1" aria-labelledby="updateModalLabel{{u[0]}}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="updateModalLabel{{u[0]}}">Editar usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{url_for('uUsuario', id=u[0])}}" method="post">
+              <div class="modal-body">
+                    <div class="form-field">
+                  <i class="fa-regular fa-user form-field__icon" aria-hidden="true"></i>
+                  <label for="updName{{u[0]}}" class="visually-hidden">Nombre completo</label>
+                  <input type="text" name="nombre" value="{{u[1]}}" id="updName{{u[0]}}" placeholder="Nombre completo" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <i class="fa-regular fa-envelope form-field__icon" aria-hidden="true"></i>
+                  <label for="updEmail{{u[0]}}" class="visually-hidden">Correo electrónico</label>
+                  <input type="email" name="correo" value="{{u[2]}}" id="updEmail{{u[0]}}" placeholder="Correo electrónico" autocomplete="email" required>
+                </div>
+                
+                <div class="form-field">
+                  <select name="perfil" id="updPerfil{{u[0]}}" class="form-select" aria-label="Perfil" required>
+                    <option value="A" {% if u[4] == 'A' %}selected{% endif %}>Administrador</option>
+                    <option value="U" {% if u[4] != 'A' %}selected{% endif %}>Usuario</option>
+
+                  </select>
+                  
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Modificar usuario</button>
               </div>
               </form>
@@ -132,39 +148,35 @@
         </div>
 
        <!-- Modal eliminar usuario -->
-      <div class="modal fade user-modal" id="modalEliminarUsuario{{u[0]}}" tabindex="-1" aria-labelledby="modalEliminarUsuarioLabel" aria-hidden="true">
+      <div class="modal fade user-modal" id="deleteModal{{u[0]}}" tabindex="-1" aria-labelledby="deleteModalLabel{{u[0]}}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
 
             <div class="modal-header">
               <div class="user-modal__heading">
                 <span class="section-eyebrow">Panel · Usuarios</span>
-                <h1 class="modal-title fs-5" id="modalEliminarUsuarioLabel">Eliminar usuario</h1>
+                <h1 class="modal-title fs-5" id="deleteModalLabel{{u[0]}}">Eliminar usuario</h1>
               </div>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
 
             <div class="modal-body">
-              <p>¿Estás seguro que deseas eliminar el usuario?:{{u[0]}}</p>
+              <p>¿Estás seguro que deseas eliminar a <strong>{{u[1]}}</strong>?</p>
             </div>
 
-            <div class="modal-footer">
+            <form action="{{url_for('dUsuario', id=u[0])}}" method="post" class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i> Cancelar
               </button>
-              <button type="button" class="btn btn-danger">
+              <button type="submit" class="btn btn-danger">
                 <i class="fa-solid fa-trash-can" aria-hidden="true"></i> Eliminar
               </button>
-            </div>
+            </form>
 
           </div>
         </div>
       </div>
         {% endfor %}
-        
-      </tbody>
-    </table>
-  </div>
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top" aria-label="Presentación">
